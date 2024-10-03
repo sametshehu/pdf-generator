@@ -39,17 +39,18 @@
 
   <script>
     document.getElementById('generatePdf').addEventListener('click', function () {
-      // Werte dynamisch in die Tabelle eintragen
-      document.getElementById('equipmentNr').value = document.getElementById('equipmentNr').value;
-      document.getElementById('leistung').value = document.getElementById('leistung').value;
-      document.getElementById('serialNr').value = document.getElementById('serialNr').value;
-      document.getElementById('spannung').value = document.getElementById('spannung').value;
-      document.getElementById('hersteller').value = document.getElementById('hersteller').value;
-      document.getElementById('strom').value = document.getElementById('strom').value;
+      // PDF-Optionen mit Seitenrändern
+      var opt = {
+        margin:       10, // Setzt einen Rand von 10 mm auf jeder Seite
+        filename:     'Pruefprotokoll_Motor.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 }, // Höhere Auflösung
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
       
       // PDF generieren
       var element = document.getElementById('protokoll');
-      html2pdf(element);
+      html2pdf().from(element).set(opt).save();
     });
   </script>
 </body>
