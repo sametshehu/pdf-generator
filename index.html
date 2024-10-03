@@ -28,18 +28,99 @@
         <td>Strom (A):</td>
         <td><input type="text" id="strom"></td>
       </tr>
-      <!-- Weitere Zeilen für die anderen Felder -->
+      <tr>
+        <td>Typ:</td>
+        <td><input type="text" id="typ"></td>
+        <td>Drehzahl (U/min):</td>
+        <td><input type="text" id="drehzahl"></td>
+      </tr>
+      <tr>
+        <td>Auftrag:</td>
+        <td><input type="text" id="auftrag"></td>
+        <td>Technischer Platz:</td>
+        <td><input type="text" id="technischerPlatz"></td>
+      </tr>
     </table>
 
-    <!-- Weitere Abschnitte und Tabellen für Wicklungswiderstand, Isolationsmessung, etc. -->
+    <h2>Wicklungswiderstand</h2>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+      <tr>
+        <td>U1-U2 (Ω):</td>
+        <td><input type="text" id="u1u2"></td>
+        <td>V1-V2 (Ω):</td>
+        <td><input type="text" id="v1v2"></td>
+        <td>W1-W2 (Ω):</td>
+        <td><input type="text" id="w1w2"></td>
+      </tr>
+    </table>
 
+    <h2>Isolationsmessung</h2>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+      <tr>
+        <td>U1-V1:</td>
+        <td><input type="text" id="u1v1"></td>
+        <td>U1-W1:</td>
+        <td><input type="text" id="u1w1"></td>
+        <td>V1-W1:</td>
+        <td><input type="text" id="v1w1"></td>
+      </tr>
+    </table>
+
+    <h2>Dimensionen/Toleranzen</h2>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+      <tr>
+        <td>Lagersitz AS Istmass:</td>
+        <td><input type="text" id="lagersitzAS"></td>
+        <td>Lagersitz NAS Istmass:</td>
+        <td><input type="text" id="lagersitzNAS"></td>
+      </tr>
+      <tr>
+        <td>Ø Welle:</td>
+        <td><input type="text" id="welle"></td>
+        <td>Ø Bohrung:</td>
+        <td><input type="text" id="bohrung"></td>
+      </tr>
+    </table>
+
+    <h2>Allgemein</h2>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+      <tr>
+        <td>Rundlauf:</td>
+        <td><input type="text" id="rundlauf"></td>
+        <td>SPM Messnippel montiert:</td>
+        <td><input type="text" id="spm"></td>
+      </tr>
+      <tr>
+        <td>Klemmkastendichtung:</td>
+        <td><input type="text" id="klemmkastendichtung"></td>
+        <td>Drehtest:</td>
+        <td><input type="text" id="drehtest"></td>
+      </tr>
+    </table>
+
+    <h2>Testlauf</h2>
+    <table border="1" cellspacing="0" cellpadding="5" width="100%">
+      <tr>
+        <td>Leistung (kW):</td>
+        <td><input type="text" id="testleistung"></td>
+        <td>Drehzahl:</td>
+        <td><input type="text" id="testdrehzahl"></td>
+      </tr>
+      <tr>
+        <td>Dauer (min):</td>
+        <td><input type="text" id="dauer"></td>
+        <td>Lager AS (°C):</td>
+        <td><input type="text" id="lagerAS"></td>
+        <td>Lager NAS (°C):</td>
+        <td><input type="text" id="lagerNAS"></td>
+      </tr>
+    </table>
   </div>
 
   <button id="generatePdf">PDF Erstellen</button>
 
   <script>
     document.getElementById('generatePdf').addEventListener('click', function () {
-      // PDF-Optionen mit Seitenrändern
       var opt = {
         margin:       10, // Setzt einen Rand von 10 mm auf jeder Seite
         filename:     'Pruefprotokoll_Motor.pdf',
@@ -48,7 +129,6 @@
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
       
-      // PDF generieren
       var element = document.getElementById('protokoll');
       html2pdf().from(element).set(opt).save();
     });
