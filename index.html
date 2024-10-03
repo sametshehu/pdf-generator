@@ -3,16 +3,99 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PDF Generator</title>
+  <title>Prüfprotokoll Motor</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <body>
-  <h1>PDF Generator</h1>
+  <h1>Prüfprotokoll Elektromotoren</h1>
   <form id="pdfForm">
+    <h2>Basisdaten</h2>
     <label for="equipmentNr">Equipment Nr.:</label>
     <input type="text" id="equipmentNr" name="equipmentNr"><br>
+    
     <label for="leistung">Leistung (kW):</label>
     <input type="text" id="leistung" name="leistung"><br>
+
+    <label for="serialNr">Serial Nr.:</label>
+    <input type="text" id="serialNr" name="serialNr"><br>
+
+    <label for="spannung">Spannung (V):</label>
+    <input type="text" id="spannung" name="spannung"><br>
+
+    <label for="hersteller">Hersteller:</label>
+    <input type="text" id="hersteller" name="hersteller"><br>
+
+    <label for="strom">Strom (A):</label>
+    <input type="text" id="strom" name="strom"><br>
+
+    <label for="typ">Typ:</label>
+    <input type="text" id="typ" name="typ"><br>
+
+    <label for="drehzahl">Drehzahl (U/min):</label>
+    <input type="text" id="drehzahl" name="drehzahl"><br>
+
+    <label for="auftrag">Auftrag:</label>
+    <input type="text" id="auftrag" name="auftrag"><br>
+
+    <label for="technischerPlatz">Technischer Platz:</label>
+    <input type="text" id="technischerPlatz" name="technischerPlatz"><br>
+
+    <h2>Wicklungswiderstand</h2>
+    <label for="u1u2">U1-U2 (Ω):</label>
+    <input type="text" id="u1u2" name="u1u2"><br>
+
+    <label for="v1v2">V1-V2 (Ω):</label>
+    <input type="text" id="v1v2" name="v1v2"><br>
+
+    <label for="w1w2">W1-W2 (Ω):</label>
+    <input type="text" id="w1w2" name="w1w2"><br>
+
+    <h2>Isolationsmessung</h2>
+    <label for="u1v1">U1-V1:</label>
+    <input type="text" id="u1v1" name="u1v1"><br>
+
+    <label for="u1w1">U1-W1:</label>
+    <input type="text" id="u1w1" name="u1w1"><br>
+
+    <label for="v1w1">V1-W1:</label>
+    <input type="text" id="v1w1" name="v1w1"><br>
+
+    <h2>Dimensionen/Toleranzen</h2>
+    <label for="lagersitzAS">Lagersitz AS (Istmass, ISO Toleranz):</label>
+    <input type="text" id="lagersitzAS" name="lagersitzAS"><br>
+
+    <label for="lagersitzNAS">Lagersitz NAS (Istmass, ISO Toleranz):</label>
+    <input type="text" id="lagersitzNAS" name="lagersitzNAS"><br>
+
+    <label for="welle">Ø Welle:</label>
+    <input type="text" id="welle" name="welle"><br>
+
+    <h2>Allgemein</h2>
+    <label for="rundlauf">Rundlauf:</label>
+    <input type="text" id="rundlauf" name="rundlauf"><br>
+
+    <label for="spm">SPM Messnippel montiert:</label>
+    <input type="text" id="spm" name="spm"><br>
+
+    <label for="drehtest">Drehtest:</label>
+    <input type="text" id="drehtest" name="drehtest"><br>
+
+    <h2>Testlauf</h2>
+    <label for="testleistung">Leistung (kW):</label>
+    <input type="text" id="testleistung" name="testleistung"><br>
+
+    <label for="testdrehzahl">Drehzahl:</label>
+    <input type="text" id="testdrehzahl" name="testdrehzahl"><br>
+
+    <label for="dauer">Dauer (min):</label>
+    <input type="text" id="dauer" name="dauer"><br>
+
+    <label for="lagerAS">Lager AS (°C):</label>
+    <input type="text" id="lagerAS" name="lagerAS"><br>
+
+    <label for="lagerNAS">Lager NAS (°C):</label>
+    <input type="text" id="lagerNAS" name="lagerNAS"><br>
+
     <button type="submit">PDF Erstellen</button>
   </form>
 
@@ -23,13 +106,28 @@
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       
-      const equipmentNr = document.getElementById('equipmentNr').value;
-      const leistung = document.getElementById('leistung').value;
+      doc.text(20, 20, `Equipment Nr.: ${document.getElementById('equipmentNr').value}`);
+      doc.text(20, 30, `Leistung (kW): ${document.getElementById('leistung').value}`);
+      doc.text(20, 40, `Serial Nr.: ${document.getElementById('serialNr').value}`);
+      doc.text(20, 50, `Spannung (V): ${document.getElementById('spannung').value}`);
+      doc.text(20, 60, `Hersteller: ${document.getElementById('hersteller').value}`);
+      doc.text(20, 70, `Strom (A): ${document.getElementById('strom').value}`);
+      doc.text(20, 80, `Typ: ${document.getElementById('typ').value}`);
+      doc.text(20, 90, `Drehzahl (U/min): ${document.getElementById('drehzahl').value}`);
+      doc.text(20, 100, `Auftrag: ${document.getElementById('auftrag').value}`);
+      doc.text(20, 110, `Technischer Platz: ${document.getElementById('technischerPlatz').value}`);
       
-      doc.text(20, 20, `Equipment Nr.: ${equipmentNr}`);
-      doc.text(20, 30, `Leistung (kW): ${leistung}`);
+      doc.text(20, 120, `U1-U2 (Ω): ${document.getElementById('u1u2').value}`);
+      doc.text(20, 130, `V1-V2 (Ω): ${document.getElementById('v1v2').value}`);
+      doc.text(20, 140, `W1-W2 (Ω): ${document.getElementById('w1w2').value}`);
       
-      doc.save('Pruefprotokoll.pdf');
+      doc.text(20, 150, `U1-V1: ${document.getElementById('u1v1').value}`);
+      doc.text(20, 160, `U1-W1: ${document.getElementById('u1w1').value}`);
+      doc.text(20, 170, `V1-W1: ${document.getElementById('v1w1').value}`);
+      
+      // Weitere Felder können hier hinzugefügt werden
+
+      doc.save('Pruefprotokoll_Motor.pdf');
     });
   </script>
 </body>
